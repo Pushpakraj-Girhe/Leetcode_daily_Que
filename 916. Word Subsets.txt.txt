@@ -1,0 +1,39 @@
+class Solution {
+    public List<String> wordSubsets(String[] words1, String[] words2) {
+         // Step 1: Build target frequency array for `words2`
+        int[] targetFreq = new int[26];
+        for (String word : words2) {
+            int[] tempFreq = new int[26];
+            for (char c : word.toCharArray()) {
+                tempFreq[c - 'a']++;
+            }
+            for (int i = 0; i < 26; i++) {
+                targetFreq[i] = Math.max(targetFreq[i], tempFreq[i]);
+            }
+        }
+
+        // Step 2: Check words in `words1` and collect universal words
+        List<String> result = new ArrayList<>();
+        for (String word : words1) {
+            int[] wordFreq = new int[26];
+            for (char c : word.toCharArray()) {
+                wordFreq[c - 'a']++;
+            }
+
+            // Check if the word satisfies the target frequency
+            boolean isUniversal = true;
+            for (int i = 0; i < 26; i++) {
+                if (wordFreq[i] < targetFreq[i]) {
+                    isUniversal = false;
+                    break;
+                }
+            }
+
+            if (isUniversal) {
+                result.add(word);
+            }
+        }
+
+        return result;
+    }
+}
