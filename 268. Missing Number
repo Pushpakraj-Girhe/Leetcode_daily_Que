@@ -6,3 +6,6 @@ class Solution {
        return natNumSum - total;
     }
 }
+The sum of the first n natural numbers (including 0) is given by the formula:
+        s=n*(n+1)/2
+
