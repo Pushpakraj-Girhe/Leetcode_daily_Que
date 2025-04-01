@@ -1,0 +1,8 @@
+class Solution {
+    public int missingNumber(int[] nums) {
+         int total = Arrays.stream(nums).sum();
+       int natNumSum = nums.length * (nums.length + 1) / 2;
+
+       return natNumSum - total;
+    }
+}
